@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://t78im24l8p68" path="res://scripts/enemy.gd" id="1_8yred"]
 [ext_resource type="Texture2D" uid="uid://cn1in37i5pxj6" path="res://sprites/Sprite Pack 2/4 - Robo Pumpkin/Walking (16 x 16).png" id="1_ho334"]
+[ext_resource type="Texture2D" uid="uid://bfc8f736k3erd" path="res://sprites/Sprite Pack 2/4 - Robo Pumpkin/Hurt (16 x 16).png" id="2_8yred"]
 [ext_resource type="Texture2D" uid="uid://ptr0j6npv7jp" path="res://sprites/Sprite Pack 2/4 - Robo Pumpkin/Standing (16 x 16).png" id="2_c6xed"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c6xed"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ho334"]
 radius = 6.0
 
-[sub_resource type="Animation" id="Animation_8yred"]
+[sub_resource type="Animation" id="Animation_34jws"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -46,12 +47,10 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_34jws"]
-load_path = "res://.godot/imported/Hurt (16 x 16).png-773b16dbebb0e331c1ca1ddfaa811d03.ctex"
-
 [sub_resource type="Animation" id="Animation_u1dkd"]
 resource_name = "hurt"
-length = 0.033333335
+length = 0.1
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,10 +58,10 @@ tracks/0/path = NodePath("texture:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.18),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [SubResource("CompressedTexture2D_34jws")]
+"values": [ExtResource("2_8yred")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -91,7 +90,8 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_dpeei"]
 resource_name = "standing"
-length = 0.033333335
+length = 0.1
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -99,10 +99,10 @@ tracks/0/path = NodePath("texture:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 0.18),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_c6xed"), ExtResource("2_c6xed")]
+"values": [ExtResource("2_c6xed")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -129,7 +129,7 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_ho334"]
+[sub_resource type="Animation" id="Animation_6tp0m"]
 resource_name = "walk"
 length = 0.2
 loop_mode = 1
@@ -140,7 +140,7 @@ tracks/0/path = NodePath("texture:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.18),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("1_ho334")]
@@ -170,30 +170,33 @@ tracks/2/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_c6xed"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kho5t"]
 _data = {
-&"RESET": SubResource("Animation_8yred"),
+&"RESET": SubResource("Animation_34jws"),
 &"hurt": SubResource("Animation_u1dkd"),
 &"standing": SubResource("Animation_dpeei"),
-&"walk": SubResource("Animation_ho334")
+&"walk": SubResource("Animation_6tp0m")
 }
 
-[node name="enemy" type="CharacterBody2D" unique_id=598377897]
-disable_mode = 2
+[node name="enemy" type="CharacterBody2D" unique_id=1223607932]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_8yred")
 
-[node name="texture" type="Sprite2D" parent="." unique_id=621518332]
-position = Vector2(-2, -8)
+[node name="texture" type="Sprite2D" parent="." unique_id=1004613187]
 texture = ExtResource("1_ho334")
 hframes = 2
 
-[node name="collision" type="CollisionShape2D" parent="." unique_id=332703468]
-position = Vector2(-1, -7)
-shape = SubResource("CircleShape2D_c6xed")
+[node name="collision" type="CollisionShape2D" parent="." unique_id=1358370236]
+visible = false
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ho334")
 
-[node name="anim" type="AnimationPlayer" parent="." unique_id=1662958324]
-libraries/ = SubResource("AnimationLibrary_c6xed")
+[node name="anim" type="AnimationPlayer" parent="." unique_id=580138747]
+libraries/ = SubResource("AnimationLibrary_kho5t")
 autoplay = &"walk"
 speed_scale = 0.5
+
+[node name="wall_detector" type="RayCast2D" parent="." unique_id=1309122508]
+target_position = Vector2(-7, 0)
+collision_mask = 2

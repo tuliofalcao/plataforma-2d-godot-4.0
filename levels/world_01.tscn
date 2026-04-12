@@ -118,7 +118,7 @@ texture = ExtResource("1_naeyk")
 2:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_fwd2m"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_j8rs1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tii1u"]
@@ -195,9 +195,11 @@ position = Vector2(915, 176)
 position = Vector2(1001, 129)
 
 [node name="moving_platform" parent="." unique_id=940924437 instance=ExtResource("10_tii1u")]
+light_mask = 2
 position = Vector2(155, 112)
 
 [node name="moving_platform2" parent="." unique_id=1634326010 instance=ExtResource("10_tii1u")]
+light_mask = 2
 position = Vector2(615, 149)
 move_speed = 5.0
 distance = 90
@@ -259,5 +261,5 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("8_dp75u")
 centered = false
 
-[node name="enemy" parent="." unique_id=598377897 instance=ExtResource("12_dp75u")]
-position = Vector2(153, 167)
+[node name="enemy" parent="." unique_id=1223607932 instance=ExtResource("12_dp75u")]
+position = Vector2(290, 103)
