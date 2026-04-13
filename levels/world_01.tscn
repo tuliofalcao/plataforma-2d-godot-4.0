@@ -263,3 +263,10 @@ centered = false
 
 [node name="enemy" parent="." unique_id=1223607932 instance=ExtResource("12_dp75u")]
 position = Vector2(290, 103)
+
+[node name="camera" type="Camera2D" parent="." unique_id=441402554]
+visible = false
+limit_left = 0
+limit_top = -1
+limit_right = 1031
+limit_smoothed = true

@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cn1in37i5pxj6" path="res://sprites/Sprite Pack 2/4 - Robo Pumpkin/Walking (16 x 16).png" id="1_ho334"]
 [ext_resource type="Texture2D" uid="uid://bfc8f736k3erd" path="res://sprites/Sprite Pack 2/4 - Robo Pumpkin/Hurt (16 x 16).png" id="2_8yred"]
 [ext_resource type="Texture2D" uid="uid://ptr0j6npv7jp" path="res://sprites/Sprite Pack 2/4 - Robo Pumpkin/Standing (16 x 16).png" id="2_c6xed"]
+[ext_resource type="PackedScene" uid="uid://dl166qexeuyut" path="res://prefabs/hitbox.tscn" id="5_u1dkd"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ho334"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u1dkd"]
 radius = 6.0
+height = 12.0
 
 [sub_resource type="Animation" id="Animation_34jws"]
 length = 0.001
@@ -50,7 +52,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_u1dkd"]
 resource_name = "hurt"
 length = 0.1
-loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -178,6 +179,9 @@ _data = {
 &"walk": SubResource("Animation_6tp0m")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1dkd"]
+size = Vector2(6, 3)
+
 [node name="enemy" type="CharacterBody2D" unique_id=1223607932]
 collision_layer = 4
 collision_mask = 2
@@ -188,9 +192,9 @@ texture = ExtResource("1_ho334")
 hframes = 2
 
 [node name="collision" type="CollisionShape2D" parent="." unique_id=1358370236]
-visible = false
 position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_ho334")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_u1dkd")
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=580138747]
 libraries/ = SubResource("AnimationLibrary_kho5t")
@@ -200,3 +204,11 @@ speed_scale = 0.5
 [node name="wall_detector" type="RayCast2D" parent="." unique_id=1309122508]
 target_position = Vector2(-7, 0)
 collision_mask = 2
+
+[node name="hitbox" parent="." unique_id=488247607 instance=ExtResource("5_u1dkd")]
+
+[node name="collision" type="CollisionShape2D" parent="hitbox" unique_id=125423039]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_u1dkd")
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
