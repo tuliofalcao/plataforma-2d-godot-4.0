@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://by1gq6uqx2tk3"]
 
 [ext_resource type="Texture2D" uid="uid://crfbw8787kgns" path="res://sprites/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_naeyk"]
+[ext_resource type="Script" uid="uid://dt22dd541my2y" path="res://scripts/world_01.gd" id="1_samdc"]
 [ext_resource type="Texture2D" uid="uid://xi868k0j1gd" path="res://sprites/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="2_o58wf"]
 [ext_resource type="PackedScene" uid="uid://du4qfr0tf2yla" path="res://prefabs/coin.tscn" id="3_0heyt"]
 [ext_resource type="PackedScene" uid="uid://bprh4x81nb2j8" path="res://actors/player.tscn" id="3_wu64i"]
@@ -126,6 +127,7 @@ shader = ExtResource("6_yso3o")
 shader_parameter/move_speed = 0.05
 
 [node name="World-01" type="Node2D" unique_id=423798972]
+script = ExtResource("1_samdc")
 
 [node name="grassland" type="TileMapLayer" parent="." unique_id=948344449]
 tile_map_data = PackedByteArray("AAAIAA8AAAABAAMAAAAKAA8AAAADAAMAAAAMAA8AAAAJAAMAAAADAAwAAAAFAAEAAAADAA0AAAAFAAIAAAADAA4AAAAFAAMAAAAEAAwAAAAGAAEAAAAEAA0AAAAGAAIAAAAEAA4AAAAGAAMAAAAFAAwAAAAHAAEAAAAFAA0AAAAHAAIAAAAFAA4AAAAHAAMAAAAaAAsAAAABAAEAAAAaAAwAAAABAAIAAAAaAA0AAAABAAMAAAAbAAsAAAACAAEAAAAbAAwAAAACAAIAAAAbAA0AAAACAAMAAAAcAAsAAAADAAEAAAAcAAwAAAADAAIAAAAcAA0AAAADAAMAAAAnAAwAAAAFAAEAAAAnAA0AAAAFAAIAAAAnAA4AAAAFAAMAAAAoAAwAAAAGAAEAAAAoAA0AAAAGAAIAAAAoAA4AAAAGAAMAAAApAAwAAAAHAAEAAAApAA0AAAAHAAIAAAApAA4AAAAHAAMAAAAfAA4AAAAFAAUAAAAgAA4AAAAGAAUAAAAhAA4AAAAHAAUAAAAIAAoAAAADAAUAAAAPAAwAAAAJAAEAAAAPAA0AAAAJAAIAAAAPAA4AAAAJAAMAAAAQAAwAAAAKAAEAAAAQAA0AAAAKAAIAAAAQAA4AAAAKAAMAAAARAAwAAAALAAEAAAARAA0AAAALAAIAAAARAA4AAAALAAMAAAAtAA0AAAAOAAQAAAAtAA4AAAAOAAUAAAAuAA0AAAAPAAQAAAAvAA0AAAAQAAQAAAAvAA4AAAAQAAUAAAAwAA0AAAARAAQAAAAxAA0AAAASAAQAAAAxAA4AAAASAAUAAAA0AAwAAAAJAAEAAAA0AA0AAAAJAAIAAAA0AA4AAAAJAAMAAAA1AAwAAAAKAAEAAAA1AA0AAAAKAAIAAAA1AA4AAAAKAAMAAAA2AAwAAAALAAEAAAA2AA0AAAALAAIAAAA2AA4AAAALAAMAAAA4AA4AAAABAAUAAAA/AAoAAAADAAUAAAA=")
@@ -261,12 +263,23 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("8_dp75u")
 centered = false
 
-[node name="enemy" parent="." unique_id=1223607932 instance=ExtResource("12_dp75u")]
-position = Vector2(290, 103)
-
 [node name="camera" type="Camera2D" parent="." unique_id=441402554]
 visible = false
 limit_left = 0
 limit_top = -1
 limit_right = 1031
 limit_smoothed = true
+
+[node name="enemies" type="Node2D" parent="." unique_id=931853616]
+
+[node name="enemy" parent="enemies" unique_id=1223607932 instance=ExtResource("12_dp75u")]
+position = Vector2(379, 233)
+
+[node name="enemy2" parent="enemies" unique_id=1194604719 instance=ExtResource("12_dp75u")]
+position = Vector2(509, 232)
+
+[node name="enemy3" parent="enemies" unique_id=878707073 instance=ExtResource("12_dp75u")]
+position = Vector2(187, 231)
+
+[node name="enemy4" parent="enemies" unique_id=375463426 instance=ExtResource("12_dp75u")]
+position = Vector2(373, 133)
